@@ -17,10 +17,8 @@ app.get('/books', (req, res) => {
      return res.send(data);
 })
 
-app.get("/books/:bookId/user/:userId", (req, res) => {
+app.get("/books/:bookId", (req, res) => {
   const data = JSON.parse(fs.readFileSync("./books.json", "utf-8"));
-  console.log('Params: ', req.params);
-  console.log("Query Strings", req.query);
   const bookId = Number(req.params.bookId);
   return res.send(
     data?.find((item) => item.id === bookId) || { message: "No books found!" }
